@@ -114,6 +114,8 @@ class HomeController extends Controller
             '11'=>'November',
             '12'=>'Desember',
         ];
+
+        
         return view('public.pembentukan',compact('program','total','bulan','rincian'));   
     }
 }
