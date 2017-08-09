@@ -8,7 +8,7 @@
                 <!-- <h3 class="panel-title">Panel title</h3> -->
             </div>
             <div class="panel-body">
-                <h2>HANYA UNTUK CALON NASABAH YANG MENDAFTAR PADA BPJS KETENAGAKERJAAN CABANG KEBON SIRIH</h2>
+                <h2>HANYA UNTUK CALON NASABAH YANG MENDAFTAR PADA BPJS KETENAGAKERJAAN</h2>
                 <h4>Bukan Penerima Upah (BPU)</h4>
                 <h5>Pengertian</h5>
                 <p>Pekerja Bukan Penerima Upah (BPU) adalah pekerja yang melakukan kegiatan atau usaha ekonomi secara mandiri untuk memperoleh penghasilan dari kegiatan atau usahanya tersebut yang meliputi : Pemberi Kerja; Pekerja di luar hubungan kerja atau Pekerja mandiri dan Pekerja yang tidak termasuk pekerja di luar hubungan kerja yang bukan menerima Upah, contoh Tukang Ojek, Supir Angkot, Pedagang Keliling, Dokter, Pengacara/Advokat, Artis, dan lain-lain.</p>

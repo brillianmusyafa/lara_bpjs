@@ -20,7 +20,7 @@ class AdminController extends Controller
             $data_pendaftar = Pendaftaran::whereMonth('created_at',$request['bulan'])->get();
         }
         else{
-            $data_pendaftar = Pendaftaran::all();    
+            $data_pendaftar = Pendaftaran::orderBy('created_at','DESC')->get();    
         }
         
         $bulan =[
@@ -37,7 +37,17 @@ class AdminController extends Controller
             '11'=>'November',
             '12'=>'Desember',
         ];
-    	return view('admin.daftar',compact('data_pendaftar','bulan'));
+        $tahun = [
+            '2016'=>'2016',
+            '2017'=>'2017',
+            '2018'=>'2018',
+        ];
+        $proses = [
+            'PROSES'=>'PROSES',
+            'BERHASIL DAFTAR'=>'BERHASIL DAFTAR',
+            'GAGAL DAFTAR'=>'GAGAL DAFTAR'
+        ];
+    	return view('admin.daftar',compact('data_pendaftar','bulan','tahun','proses'));
     }
     public function laporan(Request $request)
     {

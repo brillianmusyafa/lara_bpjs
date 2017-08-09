@@ -42,6 +42,8 @@ class LoginController extends Controller
             return redirect('/admin') ;
         }elseif($user->role_id==2){
             return redirect('home') ;
+        }elseif($user->role_id==3){
+            return redirect('/atasan');
         }
     }
 }

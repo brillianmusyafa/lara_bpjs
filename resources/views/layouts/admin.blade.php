@@ -58,8 +58,15 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                       <li><a href="{{ route('admin.daftar') }}">Lihat Daftar Baru</a></li>
+                       @if(Auth::user()->role_id == 1)
+                       <li><a href="{{ route('admin.daftar') }}">Lihat Data Nasabah</a></li>
                        <li><a href="{{ route('admin.laporan') }}">Lihat Laporan Keuangan</a></li>
+                       @else
+                       <li><a href="{{ url('atasan/daftar') }}">Lihat Daftar Baru</a></li>
+                       <li><a href="{{ url('atasan/laporan') }}">Lihat Laporan Keuangan</a></li>
+                       @endif
+
+
                    </ul>
 
                    <!-- Right Side Of Navbar -->
@@ -86,5 +93,6 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+@stack('js')
 </body>
 </html>

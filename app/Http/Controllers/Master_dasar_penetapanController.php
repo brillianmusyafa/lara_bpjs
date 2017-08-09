@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Pendaftaran;
+use App\Master_dasar_penetapan;
 use Illuminate\Http\Request;
 use Session;
-use Auth;
 
-class PendaftaranController extends Controller
+class Master_dasar_penetapanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +18,9 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        $pendaftaran = Pendaftaran::orderBy('created_at','DESC')->paginate(25);
+        $master_dasar_penetapan = Master_dasar_penetapan::paginate(25);
 
-        return view('pendaftaran.index', compact('pendaftaran'));
+        return view('master_dasar_penetapan.index', compact('master_dasar_penetapan'));
     }
 
     /**
@@ -31,7 +30,7 @@ class PendaftaranController extends Controller
      */
     public function create()
     {
-        return view('pendaftaran.create');
+        return view('master_dasar_penetapan.create');
     }
 
     /**
@@ -44,14 +43,13 @@ class PendaftaranController extends Controller
     public function store(Request $request)
     {
         
-        $auth = Auth::user();
         $requestData = $request->all();
-        $requestData['user_id'] = $auth->id;
-        Pendaftaran::create($requestData);
+        
+        Master_dasar_penetapan::create($requestData);
 
-        Session::flash('flash_message', 'Pendaftaran added!');
+        Session::flash('flash_message', 'Master_dasar_penetapan added!');
 
-        return redirect()->back();
+        return redirect('master_dasar_penetapan');
     }
 
     /**
@@ -63,9 +61,9 @@ class PendaftaranController extends Controller
      */
     public function show($id)
     {
-        $pendaftaran = Pendaftaran::findOrFail($id);
+        $master_dasar_penetapan = Master_dasar_penetapan::findOrFail($id);
 
-        return view('pendaftaran.show', compact('pendaftaran'));
+        return view('master_dasar_penetapan.show', compact('master_dasar_penetapan'));
     }
 
     /**
@@ -77,9 +75,9 @@ class PendaftaranController extends Controller
      */
     public function edit($id)
     {
-        $pendaftaran = Pendaftaran::findOrFail($id);
+        $master_dasar_penetapan = Master_dasar_penetapan::findOrFail($id);
 
-        return view('pendaftaran.edit', compact('pendaftaran'));
+        return view('master_dasar_penetapan.edit', compact('master_dasar_penetapan'));
     }
 
     /**
@@ -95,12 +93,12 @@ class PendaftaranController extends Controller
         
         $requestData = $request->all();
         
-        $pendaftaran = Pendaftaran::findOrFail($id);
-        $pendaftaran->update($requestData);
+        $master_dasar_penetapan = Master_dasar_penetapan::findOrFail($id);
+        $master_dasar_penetapan->update($requestData);
 
-        Session::flash('flash_message', 'Pendaftaran updated!');
+        Session::flash('flash_message', 'Master_dasar_penetapan updated!');
 
-        return redirect('pendaftaran');
+        return redirect('master_dasar_penetapan');
     }
 
     /**
@@ -112,10 +110,10 @@ class PendaftaranController extends Controller
      */
     public function destroy($id)
     {
-        Pendaftaran::destroy($id);
+        Master_dasar_penetapan::destroy($id);
 
-        Session::flash('flash_message', 'Pendaftaran deleted!');
+        Session::flash('flash_message', 'Master_dasar_penetapan deleted!');
 
-        return redirect('pendaftaran');
+        return redirect('master_dasar_penetapan');
     }
 }

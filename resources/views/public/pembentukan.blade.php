@@ -11,20 +11,26 @@
                     <div class="form-group">
                         <label for="">BULAN PEMBAYARAN</label>
                         {!! Form::select('bulan',$bulan,null,['class'=>'form-control']) !!}
+                        -
+                        {!! Form::select('tahun',['2017'=>'2017','2018'=>'2018'],null,['class'=>'form-control']) !!}
                     </div>
                     <div class="form-group">
-                        <label for="">BULAN PEMBAYARAN</label>
+                        <label for="">JUMLAH BULAN PEMBAYARAN</label>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="bulan_pembayaran" id="input" value="3" checked="checked">
+                                <input type="radio" name="jumlah_bulan_pembentukan" id="input" value="1" checked="checked">
+                                1 Bulan
+                            </label>
+                            <label>
+                                <input type="radio" name="jumlah_bulan_pembentukan" id="input" value="3">
                                 3 Bulan
                             </label>
                             <label>
-                                <input type="radio" name="bulan_pembayaran" id="input" value="6">
+                                <input type="radio" name="jumlah_bulan_pembentukan" id="input" value="6">
                                 6 Bulan
                             </label>
                             <label>
-                                <input type="radio" name="bulan_pembayaran" id="input" value="12">
+                                <input type="radio" name="jumlah_bulan_pembentukan" id="input" value="12">
                                 12 Bulan
                             </label>
                         </div>
@@ -46,7 +52,7 @@
                                     <td>{{$pg->nama_program}}</td>
                                     <td>{{$pg->dasar_upah}}%</td>
                                     <td>
-                                        {!! Form::hidden('program['.$pg->id.']',$pg->jumlah_iuran) !!}
+                                        {!! Form::hidden('program['.$pg->nama_program.']',$pg->jumlah_iuran) !!}
                                         Rp. {{number_format($pg->jumlah_iuran,0,'.','.')}}
                                     </td>
                                     <td width="500px"> {{$pg->keterangan}}</td>

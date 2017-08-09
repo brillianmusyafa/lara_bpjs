@@ -25,7 +25,18 @@ class Pembentukan extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'bulan', 'bulan_pembayaran'];
+    protected $fillable = [
+    'pendaftaran_id',
+    'iuran_id',
+    'bulan',
+    'tahun',
+    'jumlah_bulan_pembentukan',
+    'nominal_upah',
+    'jkk',
+    'jkm',
+    'jht',
+    'total'
+    ];
 
     public function Detail_pembentukan()
     {

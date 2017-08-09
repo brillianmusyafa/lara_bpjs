@@ -25,7 +25,7 @@ class Pendaftaran extends Model
      *
      * @var array
      */
-    protected $fillable = ['kantor_cabang_id', 'nama_lengkap', 'nik', 'tempat', 'tanggal_lahir', 'nama_ibu_kandung', 'no_telp', 'alamat', 'jenis_pekerjaan', 'nominal','user_id'];
+    protected $fillable = ['kantor_cabang_id', 'nama_lengkap', 'nik', 'tempat', 'tanggal_lahir', 'nama_ibu_kandung', 'no_telp', 'alamat', 'jenis_pekerjaan', 'nominal','user_id','proses'];
 
     public function Kantor_cabang()
     {

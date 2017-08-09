@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
+
 use App\Kantor_cabang;
 use App\Jenis_pekerjaan;
 use App\Pendaftaran;
@@ -63,8 +65,7 @@ class HomeController extends Controller
             $option['msg'] = "Anda telah terdaftar disistem kami. Anda tidak diperbolehkan merubah data yang sudah ada. Jika ada perubahan data mohon hubungi Admin. Terima Kasih!";
             $option['show_form'] = false;
             $option['data'] = $cari_pendaftar;
-            $option['data_pembentukan'] = $this->getPembentukan($id);
-            // dd($option);
+            $option['data_pembentukan'] = $this->getPembentukan($cari_pendaftar->id);
         }
         
         $list_kantor_cabang = Kantor_cabang::pluck('cabang','id');
@@ -72,9 +73,8 @@ class HomeController extends Controller
         return view('public.pendaftaran',compact('list_kantor_cabang','list_jenis_pekerjaan','option'));
     }
 
-    protected function getPembentukan($user_id){
-        $data = Pembentukan::where('user_id',$user_id)->get();
-
+    protected function getPembentukan($pendaftaran_id){
+        $data = Pembentukan::where('pendaftaran_id',$pendaftaran_id)->get();
         return $data;
     }
 
@@ -86,9 +86,11 @@ class HomeController extends Controller
     public function pembentukan($value='')
     {
         $id = Auth::user()->id;
-        echo $id;
+        $nominal = Auth::user()->Pendaftaran->nominal;
+        // get dasar iuran
+        $api = new ApiController();
+        $rincian = $api->hitung($nominal);
         $data = Pendaftaran::where('user_id',$id)->first();
-        // dd($data);
         $program = Program::all();
         $total = 0;
         foreach ($program as $key => $value) {
@@ -112,6 +114,6 @@ class HomeController extends Controller
             '11'=>'November',
             '12'=>'Desember',
         ];
-        return view('public.pembentukan',compact('program','total','bulan'));   
+        return view('public.pembentukan',compact('program','total','bulan','rincian'));   
     }
 }

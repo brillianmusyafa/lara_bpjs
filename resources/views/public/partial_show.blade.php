@@ -50,17 +50,17 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>Bulan</th>
 							<th>Periode</th>
+							<th>Bulan</th>
 							<th>Total</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($option['data_pembentukan'] as $p)
 						<tr>
-							<td>{{$p->bulan}}</td>
-							<td>{{$p->bulan_pembayaran}} Bulan</td>
-							<td>Rp. {{number_format($p->Detail_pembentukan->sum('jumlah_iuran'),0,'.','.')}}</td>
+							<td>{{$p->jumlah_bulan_pembentukan}} Bulan</td>
+							<td>{{$p->bulan}} - {{$p->tahun}}</td>
+							<td>Rp. {{number_format($p->total,0,'.','.')}}</td>
 						</tr>
 						@endforeach
 					</tbody>

@@ -14,6 +14,10 @@
                             Pilih Bulan
                             {!! Form::select('bulan',$bulan,null,['class'=>'form-control']) !!}
                         </div>
+                        <div class="form-group">
+                            -
+                            {!! Form::select('tahun',$tahun,null,['class'=>'form-control']) !!}
+                        </div>
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -31,12 +35,13 @@
                                 <th>Jenis Pekerjaan</th>
                                 <th>PENDATAAN</th>
                                 <th>PROSES</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php $no=1; ?>
                         @foreach($data_pendaftar as $data)
-                            <tr>
+                            <tr class="{{($data->proses=='GAGAL DAFTAR')?'warning':''}}">
                                 <td>{{$no++}}</td>
                                 <td>{{$data->created_at}}</td>
                                 <td>{{$data->nama_lengkap}}</td>
@@ -46,7 +51,13 @@
                                 <td>{{$data->no_telp}}</td>
                                 <td>{{$data->Jenis_pekerjaan->nama_pekerjaan}}</td>
                                 <td>PENDATAAN</td>
-                                <td>PROSES</td>
+                                <td>
+                                {!! Form::select('proses',$proses,$data->proses,['class'=>'form-control','onchange'=>'update_proses(this)','data-id'=>$data->id,'placeholder'=>'--Pilih Proses']) !!}
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-xs btn-primary">edit</button> 
+                                    <button type="button" class="btn btn-xs btn-danger">hapus</button>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -62,3 +73,22 @@
     </div>
 </div>
 @endsection
+
+@push('js')
+<script type="text/javascript">
+    function update_proses(elem){
+        id = elem.getAttribute('data-id');
+        // console.log(elem);
+        // console.log(id);
+        val = elem.value;
+        token = "{{csrf_token()}}";
+
+        $.post("{{url('api/update_proses')}}/"+id,{proses:val,_token:token},function(data){
+            console.log(data);
+        });
+
+
+    }
+
+</script>
+@endpush

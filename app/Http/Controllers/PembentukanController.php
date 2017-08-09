@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
 use App\Pembentukan;
 use App\Detail_pembentukan;
+use App\Master_dasar_penetapan;
 use Illuminate\Http\Request;
 use Session;
 use Auth;
@@ -45,29 +47,46 @@ class PembentukanController extends Controller
      */
     public function store(Request $request)
     {
+        $api = new ApiController();
 
+       
         $requestData = $request->all();
         $requestData['user_id'] = Auth::user()->id;
+        $requestData['nominal_upah'] = Auth::user()->Pendaftaran->nominal;
+        
+        // get data dari iuran tabel
+        $hitung = $api->hitung($requestData['nominal_upah']);
+        // add to request array
+        $requestData['jkk'] = $hitung['jkk'];
+        $requestData['jkm'] = $hitung['jkm'];
+        $requestData['jht'] = $hitung['jht'];
+        $requestData['total'] = $hitung['total']*$requestData['jumlah_bulan_pembentukan'];
+        $requestData['iuran_id'] = $hitung['id'];
+        $requestData['pendaftaran_id'] = Auth::user()->Pendaftaran->id;
+
+        // mulai transaksi untuk menyimpan dalam table
         DB::beginTransaction();
         $save = Pembentukan::create($requestData);
 
-        foreach ($requestData['program'] as $key => $value) {
-            $data = [
-            'pembentukan_id'=>$save->id,
-            'program_id'=>$key,
-            'jumlah_iuran'=>$value
-            ];
-            Detail_pembentukan::create($data);
-        }
+        // foreach ($requestData['program'] as $key => $value) {
+        //     $data = [
+        //     'pembentukan_id'=>$save->id,
+        //     'program_id'=>$key,
+        //     'jumlah_iuran'=>$value
+        //     ];
+        //     Detail_pembentukan::create($data);
+        // }
         DB::commit();
 
         // save detail pembentukan
 
 
-        Session::flash('flash_message', 'Pembentukan tersimpan!');
+        Session::flash('flash_message', 'Pembentukan berhasil tersimpan!');
 
         return redirect('p/pendaftaran');
     }
+
+
 
     /**
      * Display the specified resource.

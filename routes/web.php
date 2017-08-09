@@ -32,6 +32,23 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 	Route::get('/laporan','AdminController@laporan')->name('admin.laporan');
 
 });
+
+Route::group(['prefix'=>'atasan','middleware'=>'auth'],function(){
+	// Route::get('/','AdminController@index')->name('admin.index');
+	// Route::get('/daftar','AdminController@daftar')->name('admin.daftar');
+	// Route::get('/laporan','AdminController@laporan')->name('admin.laporan');
+
+	Route::get('/',function(){
+		return view('atasan.index');
+	});
+	Route::get('/daftar',function(){
+		return view('atasan.daftar');
+	});
+	Route::get('/laporan',function(){
+		return view('atasan.laporan');
+	});
+});
+
 Route::resource('pendaftaran', 'PendaftaranController');
 Route::resource('kantor_cabang', 'Kantor_cabangController');
 Route::resource('user', 'UserController');
@@ -40,3 +57,4 @@ Route::resource('jenis_pekerjaan', 'Jenis_pekerjaanController');
 Route::resource('program', 'ProgramController');
 Route::resource('pembentukan', 'PembentukanController');
 Route::resource('detail_pembentukan', 'Detail_pembentukanController');
+Route::resource('master_dasar_penetapan', 'Master_dasar_penetapanController');

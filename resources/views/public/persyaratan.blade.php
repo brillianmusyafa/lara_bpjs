@@ -13,7 +13,7 @@
                     <li>Mempunyai NIK (Nomor Induk Kependudukan)</li>
                     <li>Mengisi formulir F1 BPU di menu pendaftaran untuk pendaftaran wadah/Kelompok/Mitra Baru atau
                        Menghubungi: </li>
-                       <li>Kantor Cabang BPJS Ketenagakerjaan CABANG KEBON SIRIH</li>
+                       <li>Kantor Cabang BPJS Ketenagakerjaan</li>
                        <li>Mitra/Payment Point(Aggregator/Perbankan) yang bekerjasama dengan BPJS Ketenagakerjaan.</li>
                        <li>Pembayaran iuran dapat dilakukan oleh peserta sendiri atau melalui Wadah/Mitra/Payment Point/Aggregator/Perbankan) selama bulanan/3 bulan/6 bulan/1 tahun sekaligus</li>
                    </ul>
@@ -26,6 +26,8 @@
                         <li>Peserta yang telah mendaftar dapat langsung masuk ke menu pembentukan untuk mencetak bukti pembentukan agar dapat dibayarkan melalui salah satu bank rekanan.</li>
                         <li>Calon peserta yang belum diverifikasi oleh admin tidak dapat melihat hasil pembentukan. Waktu verifikasi 1 x 24 jam hari dan jam kerja oleh admin</li>
                     </ol>
+
+                    <p><strong>Silahkan <a href="{{url('/register')}}">register</a> atau <a href="{{'/login'}}">login</a> untuk melakukan pendaftaran</strong></p>
                 </div>
             </div>
         </div>

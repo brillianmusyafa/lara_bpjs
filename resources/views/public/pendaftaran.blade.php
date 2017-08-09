@@ -24,7 +24,7 @@
 
                 {!! Form::open(['url' => '/pendaftaran', 'class' => 'form-horizontal', 'files' => true]) !!}
                 <div class="form-group {{ $errors->has('kantor_cabang_id') ? 'has-error' : ''}}">
-                    {!! Form::label('kantor_cabang_id', 'Kantor Cabang Id', ['class' => 'col-md-4 control-label']) !!}
+                    {!! Form::label('kantor_cabang_id', 'Kantor Cabang', ['class' => 'col-md-4 control-label']) !!}
                     <div class="col-md-6">
                         {!! Form::select('kantor_cabang_id',$list_kantor_cabang, null, ['class' => 'form-control']) !!}
                         {!! $errors->first('kantor_cabang_id', '<p class="help-block">:message</p>') !!}
